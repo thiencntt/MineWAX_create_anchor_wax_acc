@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MineWAX Tools - made by ThienCNTT</title>
+  <script src="https://cdn.jsdelivr.net/npm/eosjs-ecc@4.0.4/lib/eosjs-ecc.min.js"
+  integrity="sha512-dYFDmK/d9r3/NCp6toLtfkwOjSMRBaEzaGAx1tfRItC0nsI0hVLERk05iNBQR7uDNI7ludYhcBI4vUiFHdjsTQ=="
+  crossorigin="anonymous"></script>
+  <script src="./js/eosjs-jssig-debug.js?n=3.2"></script>
+  <script src='./js/waxjs.js?n=3.2'></script>
+  <script src='./js/sweetalert2.all.min.js?n=3.2'></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+  <script src="https://cdn.jsdelivr.net/npm/luxon@2.0.1/build/global/luxon.min.js" integrity="sha256-BdqBGuaawDzMtW2Wn9ISUuYKUY/A7d5NVcj6Ix3jwv8=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/public-google-sheets-parser"></script>
+  <!--  onload="login()" -->
+</head>
+<body onload="login()" class="bg-light">
+  <div class="container fixed-top">
+    <header class="d-flex flex-wrap justify-content-center py-2 mb-3 border-bottom bg-white">
+      <div class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none px-2">      
+         <span class="fs-4"><i class="bi bi-bug-fill"></i> <span id="acc">WAX Wallet</span> 
+
+      </div>
+    </header>
+  </div>
+  <div class="container">
+    <div class="row g-3">
+      <div class="py-2 text-center"><h2>Account</h2></div>
+    </div>
+  </div>
+  <div class="container" id="main">
+    <main>
+      <div class="row g-3">
+        <div class="col-md-5 col-lg-5 order-md-last">
+          <label><i class="bi bi-stack-overflow"></i> <strong>Logs</strong></label>
+          <div id="response"></div>
+        </div>
+        <div class="col-md-7 col-lg-7">
+
+          <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Home</button>
+              <a class="nav-link" id="inventoryLink" href="#" target="_blank">Inventory</a>
+              <a class="nav-link" id="bloksLink" href="#" target="_blank">Bloks</a>
+              <a class="nav-link" id="extensionLink" href="#" target="_blank">Extension</a>
+              <a class="nav-link" id="discordLink" href="#" target="_blank">Discord</a>
+            </div>
+          </nav>
+          <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+              <!-- Begin HOME-->
+              
+              <div class="row row-cols-lg-auto my-0">
+                <div class="col-12">
+                  <label for="endpointLink" class="col-form-label"><i class="bi bi-boxes"></i> <strong>API Endpoints: </strong></label> 
+                    <span class="col-form-label text-primary" id="endpointLink"></span>
+                </div>
+                <div class="col-12">
+                  <label for="current_cpu" class="col-form-label"><i class="bi bi-cpu"></i> <strong>CPU</strong></label> 
+                    <span class="col-form-label text-primary" id="current_cpu"></span>
+                </div>
+              </div>
+              <hr class="my-1">
+              <!-- Owner Private Key -->
+              <div class="row row-cols-lg-auto">
+                <div class="col-12">
+                  <label for="thitingame" class="col-form-label"><i class="bi bi-person-square"></i> <strong>Owner Private Key</strong></label></div>
+                <div class="col-12">
+                  <input class="form-control" type="text" id="ownerPrivatekeyId" onClick="this.setSelectionRange(0, this.value.length)" size="68" placeholder="">
+                </div>
+              </div>
+              <hr class="my-1">
+              <!-- Owner Public Key -->
+              <div class="row row-cols-lg-auto">
+                <div class="col-12">
+                  <label for="thitingame" class="col-form-label"><i class="bi bi-person-square"></i> <strong>Owner Public Key</strong></label></div>
+                <div class="col-12">
+                  <input class="form-control" type="text" id="ownerPublickeyId" onClick="this.setSelectionRange(0, this.value.length)" size="68" placeholder="">
+                </div>
+              </div>
+              <hr class="my-1">
+              <!--Active Private Key -->
+              <div class="row row-cols-lg-auto">
+                <div class="col-12">
+                  <label for="thitingame" class="col-form-label"><i class="bi bi-person-square"></i> <strong>Active Private Key</strong></label></div>
+                <div class="col-12">
+                  <input class="form-control" type="text" id="activePrivatekeyId" onClick="this.setSelectionRange(0, this.value.length)" size="68" placeholder="">
+                </div>
+              </div>
+              <hr class="my-1">
+              <!-- Active Public Key -->
+              <div class="row row-cols-lg-auto">
+                <div class="col-12">
+                  <label for="thitingame" class="col-form-label"><i class="bi bi-person-square"></i> <strong>Active Public Key</strong></label></div>
+                <div class="col-12">
+                  <input class="form-control" type="text" id="activePublickeyId" onClick="this.setSelectionRange(0, this.value.length)" size="68" placeholder="">
+                </div>
+              </div>
+              <hr class="my-1">
+              <!-- Account Prefix -->
+              <div class="row row-cols-lg-auto">
+                <div class="col-12">
+                  <label for="thitingame" class="col-form-label"><i class="bi bi-person-square"></i> <strong>Account Prefix</strong></label></div>
+                <div class="col-12">
+                  <input class="form-control" type="text" id="accprefix" size="42" placeholder="Enter account prefix (Length must be 9 characters)" maxlength="9">
+                </div>
+                <div class="col-12">
+                  <button id="bc" onclick="checkValidAcc()" class="btn btn-primary">Check Account</button>
+                </div>
+              </div>
+              <hr class="my-1">
+              <!-- RAM CPU NET -->
+              <div class="row row-cols-lg-auto">
+                <div class="col-12">
+                  <label for="ramInput" class="col-form-label"><i class="bi bi-person-square"></i> <strong>RAM</strong></label></div>
+                <div class="col-12">
+                  <input class="form-control" type="text" id="ramInput" size="12" maxlength="4" value="4000">
+                </div>
+
+                <div class="col-12">
+                  <label for="cpuInput" class="col-form-label"><strong>CPU</strong></label></div>
+                <div class="col-12">
+                  <input class="form-control" type="text" id="cpuInput" size="12" value="0.00000001">
+                </div>
+
+                <div class="col-12">
+                  <label for="netInput" class="col-form-label"><strong>NET</strong></label></div>
+                <div class="col-12">
+                  <input class="form-control" type="text" id="netInput" size="12" value="0.00000001">
+                </div>
+                
+              </div>
+              <hr class="my-1">
+
+              <div class="row row-cols-lg-auto justify-content-md-center">
+                <div class="col-12">
+                  <button id="bc" onclick="createAccount()" class="btn btn-primary">Create 10 account</button>
+                </div>
+                <div class="col-12">
+                  <button id="bc" onclick="getNewEosKey()" class="btn btn-danger">Get New Key</button>
+                </div>
+              </div>
+              <hr class="my-2">
+              <!-- End HOME-->
+              <textarea id="txtDebug" onClick="this.setSelectionRange(0, this.value.length)" cols="100" rows="6"></textarea>
+            </div>
+      
+          </div>         
+          
+        </div>
+      </div>
+    </main>
+    <footer class="my-3 pt-2 text-muted text-center text-small">
+      <p class="mb-1">&copy; 2022 MineWAX.com</p>
+    </footer>
+  </div>
+  <div class="loader" id="loader">
+    <div class="loader-wheel"></div>
+    <div class="loader-text"></div>
+  </div>
+<hr>
+<div class="tokendiv bottomright" id="tokenDiv"></div>
+<script src="./js/run.js?n=1.0"></script>
+</body>
+</html>
